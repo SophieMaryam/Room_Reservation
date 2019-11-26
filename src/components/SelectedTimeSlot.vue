@@ -1,36 +1,39 @@
-<template>  
-<div>
-  <b-button v-b-modal.modal-1> open</b-button>
-  <b-modal id="modal-1" title="BootstrapVue">
-    <p class="my-4">Hello from modal!</p>
-  </b-modal>
-</div>
+<template>
+  <div>
+    <b-button v-b-modal="modalName">Open</b-button>
+    <b-modal
+      size="lg"
+      :id="modalName"
+      :ref="modalName"
+      title="Create Meeting"
+    >
+      <label for="range-1">Booked by:</label>
+      <b-form-input  placeholder="Enter your name"></b-form-input>
+    </b-modal>
+  </div>
 </template>
 
 <script>
-import { BModal, VBModal } from 'bootstrap-vue'
+import Vue from "vue";
+import RoomResTable from "../components/RoomReservation.vue"
 
-export default {
+export default Vue.extend({
   name: "SelectedTimeSlot",
-  components: { BModal },
-  directives: { 'b-modal': VBModal },
-  data() {
-    return {
-      meetingSpace: ""
-    };
-  },
+  props: ["id"],
   methods: {
-      hideModal() {
-        this.$refs['my-modal'].hide()
-      },
+    closeModal() {
+      this.$refs[this.modalName].hide();
+    }
+  },
+  computed: {
+    modalName() {
+      console.log(this.id);
+      const { selectedHour, selectedRoom } = this.id;
+      // console.log(selectedHour);
+      return `${selectedRoom}@${selectedHour}`;
+    }
   }
-  // computed: {
-  //   modalName() {
-  //     // const selectedTimeSlot = this.room + this.hour
-  //     // return value;
-  //   }
-  // }
-};
+});
 </script>
 
 <style>
