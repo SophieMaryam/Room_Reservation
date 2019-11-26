@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <div class="text-center">
-      <button @click="getPreviousDate">Prev</button>
+  <div> 
+    <div class="d-flex justify-content-center mt-5 mb-5">
+      <button @click="getPreviousDate" class="mr-5">Prev</button>
       <h2> {{ modifiedDate }} </h2>
-      <button @click="getTomorrowsDate">Next</button>
+      <button @click="getTomorrowsDate" class="ml-5">Next</button>
     </div>
   </div>
 </template>
